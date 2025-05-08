@@ -35,7 +35,7 @@ namespace EnemyAI
 		[HideInInspector] public float nearRadius;                  // Radius of NPC near area.
 		[HideInInspector] public NavMeshAgent nav;                  // Reference to the NPC NavMesh agent.
 		[HideInInspector] public int waypointIndex;                 // Reference to current waypoint.
-		[HideInInspector] public int maximumBurst = 7;              // The maximum burst size on a round.
+		[HideInInspector] public int maximumBurst = 2;              // The maximum burst size on a round.
 		[HideInInspector] public float blindEngageTime = 30f;       // Time to keep targeting last seen position after target leaves sight.
 		[HideInInspector] public bool targetInSight;                // Is target on sight?
 		[HideInInspector] public bool focusSight;                   // Will focus on sight position?
