@@ -7,7 +7,8 @@ public class PlayerShooting : MonoBehaviour
 	public Transform shotOrigin, drawShotOrigin;
 	public LayerMask shotMask;
 	public WeaponMode weaponMode = WeaponMode.SEMI;
-	public int RPM = 600;
+	public int baseRPM;
+	public int comboMultiplier = 1;
 	public enum WeaponMode
 	{
 		SEMI,
@@ -18,6 +19,7 @@ public class PlayerShooting : MonoBehaviour
 	private float weaponRange = 100f;
 	private float bulletDamage = 10f;
 	private bool canShot;
+	private int realRPM;
 
 	private AudioSource gunAudio;
 
@@ -26,10 +28,11 @@ public class PlayerShooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		realRPM = baseRPM;
 		laserLine = GetComponent<LineRenderer>();
 		gunAudio = GetComponent<AudioSource>();
 		canShot = true;
-		float waitTime = 60f / RPM;
+		float waitTime = 60f / realRPM;
 		halfShotDuration = new WaitForSeconds(waitTime/2);
 	}
 
@@ -56,8 +59,32 @@ public class PlayerShooting : MonoBehaviour
 			laserLine.SetPosition(1, hit.point);
 
 			// Call the damage behaviour of target if exists.
-			if(hit.collider)
-				hit.collider.SendMessageUpwards("HitCallback", new HealthManager.DamageInfo(hit.point, shotOrigin.forward, bulletDamage, hit.collider), SendMessageOptions.DontRequireReceiver);
+			if(hit.collider){
+				hit.collider.SendMessageUpwards(
+					"HitCallback", 
+					new HealthManager.DamageInfo(
+						hit.point, 
+						shotOrigin.forward, 
+						bulletDamage, 
+						hit.collider
+						), 
+					SendMessageOptions.DontRequireReceiver
+				);
+
+				if(hit.collider.CompareTag("Enemy")){
+					comboMultiplier++;
+				}
+				else {
+					comboMultiplier = 1;
+				}
+			}
+			else{
+				comboMultiplier = 1;
+			}
+
+			realRPM = comboMultiplier *  baseRPM;
+			float waitTime = 60f / realRPM;
+			halfShotDuration = new WaitForSeconds(waitTime/2);
 		}
 		else
 			laserLine.SetPosition(1, drawShotOrigin.position + (shotOrigin.forward * weaponRange));

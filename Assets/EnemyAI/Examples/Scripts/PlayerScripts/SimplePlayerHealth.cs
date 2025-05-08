@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 // This class is created for the example scene. There is no support for this script.
 public class SimplePlayerHealth : HealthManager
 {
+	public bool godMode;
 	public float health = 100f;
 
 	public Transform canvas;
@@ -22,6 +23,7 @@ public class SimplePlayerHealth : HealthManager
 
 	public override void TakeDamage(Vector3 location, Vector3 direction, float damage, Collider bodyPart, GameObject origin)
 	{
+		if(!godMode)
 		health -= damage;
 
 		if (hurtPrefab && canvas)
