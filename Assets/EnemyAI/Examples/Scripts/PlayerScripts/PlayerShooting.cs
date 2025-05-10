@@ -4,36 +4,73 @@ using UnityEngine;
 // This class is created for the example scene. There is no support for this script.
 public class PlayerShooting : MonoBehaviour
 {
-	public Transform shotOrigin, drawShotOrigin;
+	public Transform drawShotOrigin;
 	public LayerMask shotMask;
-	public WeaponMode weaponMode = WeaponMode.SEMI;
-	public int baseRPM;
-	public int comboMultiplier = 1;
+	public WeaponMode weaponMode;
+	public ComboMode comboMode;
+	public float baseRange = 100f;
+	public float baseDamage = 10f;
+	public int baseFireRate = 100;
+	private int comboMultiplier = 1;
+	public enum ComboMode 
+	{
+		FIRE_RATE,
+		DAMAGE,
+		RANGE
+	}
 	public enum WeaponMode
 	{
 		SEMI,
-		AUTO
+		AUTO,
+		BURST
 	}
 
+	private Transform shotOrigin;
 	private LineRenderer laserLine;
-	private float weaponRange = 100f;
-	private float bulletDamage = 10f;
 	private bool canShot;
-	private int realRPM;
+	private int realFireRate;
+	private float realDamage;
+	private float realRange;
 
 	private AudioSource gunAudio;
 
 	private WaitForSeconds halfShotDuration;// = new WaitForSeconds(0.06f);
 
+	void CalculateHalfShotDuration() {
+		float waitTime = 60f / realFireRate;
+		halfShotDuration = new WaitForSeconds(waitTime/2);
+	}
+
+	void CalculateRealValues() {
+		switch(comboMode){
+			case ComboMode.FIRE_RATE:
+				realFireRate = comboMultiplier *  baseFireRate;
+				CalculateHalfShotDuration();
+				break;
+
+			case ComboMode.DAMAGE:
+				realDamage = comboMultiplier * baseDamage;
+				break;
+			
+			case ComboMode.RANGE:
+				realRange = comboMultiplier * baseRange;
+				break;
+		}
+	}
+
     // Start is called before the first frame update
     void Start()
     {
-		realRPM = baseRPM;
+		realFireRate = baseFireRate;
+		realDamage = baseDamage;
+		realRange = baseRange;
 		laserLine = GetComponent<LineRenderer>();
 		gunAudio = GetComponent<AudioSource>();
 		canShot = true;
-		float waitTime = 60f / realRPM;
-		halfShotDuration = new WaitForSeconds(waitTime/2);
+		CalculateHalfShotDuration();
+
+		if (transform.parent != null)
+			shotOrigin = transform.parent;
 	}
 
     // Update is called once per frame
@@ -42,6 +79,11 @@ public class PlayerShooting : MonoBehaviour
 		if(weaponMode == WeaponMode.SEMI && Input.GetButtonDown("Fire1") && canShot)
 		{
 			Shoot();
+		}
+		else if(weaponMode == WeaponMode.BURST && Input.GetButtonDown("Fire1") && canShot)
+		{
+			for (int i = 0; i < 3; i++)
+				Shoot();
 		}
 		else if(weaponMode == WeaponMode.AUTO && Input.GetButton("Fire1") && canShot)
 		{
@@ -54,7 +96,8 @@ public class PlayerShooting : MonoBehaviour
 		StartCoroutine(ShotEffect());
 		laserLine.SetPosition(0, drawShotOrigin.position);
 		Physics.SyncTransforms();
-		if (Physics.Raycast(shotOrigin.position, shotOrigin.forward, out RaycastHit hit, weaponRange, shotMask))
+
+		if (Physics.Raycast(shotOrigin.position, shotOrigin.forward, out RaycastHit hit, realRange, shotMask))
 		{
 			laserLine.SetPosition(1, hit.point);
 
@@ -65,30 +108,26 @@ public class PlayerShooting : MonoBehaviour
 					new HealthManager.DamageInfo(
 						hit.point, 
 						shotOrigin.forward, 
-						bulletDamage, 
+						realDamage, 
 						hit.collider
 						), 
 					SendMessageOptions.DontRequireReceiver
 				);
 
-				if(hit.collider.CompareTag("Enemy")){
+				if(hit.collider.CompareTag("Enemy"))
 					comboMultiplier++;
-				}
-				else {
+				else 
 					comboMultiplier = 1;
-				}
 			}
-			else{
+			else
 				comboMultiplier = 1;
-			}
-
-			realRPM = comboMultiplier *  baseRPM;
-			float waitTime = 60f / realRPM;
-			halfShotDuration = new WaitForSeconds(waitTime/2);
 		}
-		else
-			laserLine.SetPosition(1, drawShotOrigin.position + (shotOrigin.forward * weaponRange));
+		else{
+			laserLine.SetPosition(1, drawShotOrigin.position + (shotOrigin.forward * realRange));
+			comboMultiplier = 1;
+		}
 
+		CalculateRealValues();
 		// Call the alert manager to notify the shot noise.
 		GameObject.FindGameObjectWithTag("GameController").SendMessage("RootAlertNearby", shotOrigin.position, SendMessageOptions.DontRequireReceiver);
 	}
