@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,7 +131,372 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1881144926}
     m_Modifications:
-    - target: {fileID: 922551923582460776, guid: e57dbab29d0a5124ebd78c1df0375a65,
+    - target: {fileID: 2350720470920289192, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350720470920289194, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476893630481307592, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793895034084762638, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793951255079150044, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793951612106713168, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793952822493056086, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793991038733486862, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793991648767353048, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793997091976719984, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794001825771334438, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794002941717767230, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794036470435595358, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794054593651785670, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794065933486806746, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794100329343079134, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794104440128080760, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794116731807970618, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794122962719898964, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794125347696492648, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794171220579840310, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794189748033386478, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794448117611714952, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794448652996280458, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794453738787504000, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794495834657586804, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794524660594149206, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794534431754015838, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794552107750361458, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794561605435867678, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794570934931819538, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794574204120621482, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794574563186259196, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794575439606834230, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794578204307645206, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794598842337017224, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794610712031741100, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794611262009861730, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794615733738438722, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794616280203253322, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794616594253215244, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794651335980851670, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794661652724011284, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy_pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794695530037193618, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794742065529522086, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794745386731387404, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794750390169333302, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794774161588406060, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794792976504483074, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794826550163397284, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794848127248222326, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794865820973789056, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794882046528255336, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794886897212695440, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794907394990468440, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794915574966463686, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794920309001376766, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794922549819176782, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794968551573236562, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794969430461621068, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794996912632782450, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795005639026500086, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795469168303119190, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795470774536014066, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795491468868112768, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795521845202092932, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795522538517805670, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795526304157690560, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795536372755396216, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795554379401905680, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795562458628832708, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795597572232699587, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: aimTarget
+      value: 
+      objectReference: {fileID: 4004804066453252327}
+    - target: {fileID: 5795597573280655198, guid: 17a5fd789535dc94b80bf78ffb0ea097,
+        type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800476858855690704, guid: 17a5fd789535dc94b80bf78ffb0ea097,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.095116
@@ -379,7 +745,40 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 552992854}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &163930706 stripped
+  m_GameObject: {fileID: 1352245051}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: da86e8dc82860a646a71065ccf71a1c9, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
+--- !u!4 &1352245054
 Transform:
   m_CorrespondingSourceObject: {fileID: 5109025333976866155, guid: 57b8e3425f075924e8c2162dec62bf5f,
     type: 3}
@@ -1021,6 +1420,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555040034062837336, guid: 594a16f991246664199262496263ce41,
+        type: 3}
+      propertyPath: baseRPM
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8902,8 +9306,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: 0
-  health: 10000
-  canvas: {fileID: 0}
+  godMode: 1
+  health: 100
+  canvas: {fileID: 1539276633}
   hurtPrefab: {fileID: 5542824109845126322, guid: 96c82f1df8075f24aa60ec228a6b40dc,
     type: 3}
   decayFactor: 0.8
