@@ -84,6 +84,7 @@ public class PlayerShooting : MonoBehaviour
 		{
 			for (int i = 0; i < 3; i++)
 				Shoot();
+				
 		}
 		else if(weaponMode == WeaponMode.AUTO && Input.GetButton("Fire1") && canShot)
 		{
