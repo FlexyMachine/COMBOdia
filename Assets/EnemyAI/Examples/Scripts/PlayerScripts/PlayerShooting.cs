@@ -8,10 +8,11 @@ public class PlayerShooting : MonoBehaviour
 	public LayerMask shotMask;
 	public WeaponMode weaponMode;
 	public ComboMode comboMode;
+	public float comboMultiplier = 0.1f;
 	public float baseRange = 100f;
 	public float baseDamage = 10f;
 	public int baseFireRate = 100;
-	private int comboMultiplier = 1;
+	private int comboCount = 0;
 	public enum ComboMode 
 	{
 		FIRE_RATE,
@@ -42,18 +43,22 @@ public class PlayerShooting : MonoBehaviour
 	}
 
 	void CalculateRealValues() {
-		switch(comboMode){
+	
+		float multiplier = 1 + (comboMultiplier * comboCount);
+
+		switch (comboMode)
+		{
 			case ComboMode.FIRE_RATE:
-				realFireRate = comboMultiplier *  baseFireRate;
+				realFireRate = (int)(multiplier * baseFireRate);
 				CalculateHalfShotDuration();
 				break;
 
 			case ComboMode.DAMAGE:
-				realDamage = comboMultiplier * baseDamage;
+				realDamage = multiplier * baseDamage;
 				break;
-			
+
 			case ComboMode.RANGE:
-				realRange = comboMultiplier * baseRange;
+				realRange = multiplier * baseRange;
 				break;
 		}
 	}
@@ -116,16 +121,16 @@ public class PlayerShooting : MonoBehaviour
 				);
 
 				if(hit.collider.CompareTag("Enemy"))
-					comboMultiplier++;
+					comboCount++;
 				else 
-					comboMultiplier = 1;
+					comboCount = 0;
 			}
 			else
-				comboMultiplier = 1;
+				comboCount = 0;
 		}
 		else{
 			laserLine.SetPosition(1, drawShotOrigin.position + (shotOrigin.forward * realRange));
-			comboMultiplier = 1;
+			comboCount = 0;
 		}
 
 		CalculateRealValues();
