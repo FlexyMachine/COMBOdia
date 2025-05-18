@@ -324,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dead: 0
   godMode: 1
-  health: 100
+  health: 1000
   canvas: {fileID: 0}
   hurtPrefab: {fileID: 5542824109845126322, guid: 96c82f1df8075f24aa60ec228a6b40dc,
     type: 3}
