@@ -221,9 +221,10 @@ MonoBehaviour:
     m_Bits: 1
   weaponMode: 0
   comboMode: 2
+  comboMultiplier: 0.1
   baseRange: 10
   baseDamage: 1000
-  baseFireRate: 100
+  baseFireRate: 200
 --- !u!82 &1384228250642681227
 AudioSource:
   m_ObjectHideFlags: 0
