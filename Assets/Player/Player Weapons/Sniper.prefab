@@ -223,7 +223,7 @@ MonoBehaviour:
   comboMode: 0
   comboMultiplier: 0.1
   baseRange: 1000
-  baseDamage: 10000
+  baseDamage: 100
   baseFireRate: 100
 --- !u!82 &1384228250642681227
 AudioSource:

@@ -160,8 +160,8 @@ MonoBehaviour:
   weaponMode: 0
   comboMode: 1
   comboMultiplier: 0.1
-  baseRange: 100
-  baseDamage: 10
+  baseRange: 200
+  baseDamage: 25
   baseFireRate: 400
 --- !u!82 &3864021351004623995
 AudioSource:
