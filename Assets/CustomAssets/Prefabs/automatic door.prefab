@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 7522851592673114023}
   - component: {fileID: 4002150651632559342}
   - component: {fileID: 7232729977661631675}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: automatic door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
