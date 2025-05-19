@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // This class is created for the example scene. There is no support for this script.
 public class SimplePlayerHealth : HealthManager
 {
 	public bool godMode;
 	public float health = 100f;
+	public float maxHealth = 100f;
 
 	public Transform canvas;
 	public GameObject hurtPrefab;
+	public Slider healthBar;
 	public float decayFactor = 0.8f;
+	private bool dead = false;
 
 	private HurtHUD hurtUI;
 
@@ -23,8 +27,11 @@ public class SimplePlayerHealth : HealthManager
 
 	public override void TakeDamage(Vector3 location, Vector3 direction, float damage, Collider bodyPart, GameObject origin)
 	{
-		if(!godMode)
-		health -= damage;
+		if (!godMode)
+		{
+			health -= damage;
+				healthBar.value = health / maxHealth;
+		}
 
 		if (hurtPrefab && canvas)
 			hurtUI.DrawHurtUI(origin.transform, origin.GetHashCode());
@@ -32,16 +39,7 @@ public class SimplePlayerHealth : HealthManager
 
 	public void OnGUI()
 	{
-		if (health > 0f)
-		{
-			GUIStyle textStyle = new GUIStyle
-			{
-				fontSize = 50
-			};
-			textStyle.normal.textColor = Color.white;
-			GUI.Label(new Rect(0, Screen.height - 60, 30, 30), health.ToString(), textStyle);
-		}
-		else if (!dead)
+		if (health <= 0 && !dead)
 		{
 			dead = true;
 			StartCoroutine(nameof(ReloadScene));
