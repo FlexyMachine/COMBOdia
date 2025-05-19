@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,8 +14,8 @@ public class SimplePlayerHealth : HealthManager
 	public Transform canvas;
 	public GameObject hurtPrefab;
 	public Slider healthBar;
+	public TMP_Text healthText;
 	public float decayFactor = 0.8f;
-	private bool dead = false;
 
 	private HurtHUD hurtUI;
 
@@ -25,12 +26,23 @@ public class SimplePlayerHealth : HealthManager
 		hurtUI.Setup(canvas, hurtPrefab, decayFactor, this.transform);
 	}
 
+
+	private void UpdateUI()
+	{	
+		healthBar.value = health / maxHealth;
+		healthText.text = health / maxHealth * 100 + "%";
+	}
+	private void OnEnable()
+	{
+		UpdateUI();
+	}
+
 	public override void TakeDamage(Vector3 location, Vector3 direction, float damage, Collider bodyPart, GameObject origin)
 	{
 		if (!godMode)
 		{
 			health -= damage;
-				healthBar.value = health / maxHealth;
+			UpdateUI();
 		}
 
 		if (hurtPrefab && canvas)

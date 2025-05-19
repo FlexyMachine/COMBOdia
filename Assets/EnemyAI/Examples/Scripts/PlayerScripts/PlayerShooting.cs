@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // This class is created for the example scene. There is no support for this script.
 public class PlayerShooting : MonoBehaviour
@@ -12,8 +14,11 @@ public class PlayerShooting : MonoBehaviour
 	public float baseRange = 100f;
 	public float baseDamage = 10f;
 	public int baseFireRate = 100;
-	private int comboCount = 0;
-	public enum ComboMode 
+	public TMP_Text comboText;
+	public TMP_Text fireRateText;
+	public TMP_Text damageText;
+	public TMP_Text rangeText;
+	public enum ComboMode
 	{
 		FIRE_RATE,
 		DAMAGE,
@@ -26,6 +31,7 @@ public class PlayerShooting : MonoBehaviour
 		BURST
 	}
 
+	private int comboCount = 0;
 	private Transform shotOrigin;
 	private LineRenderer laserLine;
 	private bool canShot;
@@ -37,13 +43,30 @@ public class PlayerShooting : MonoBehaviour
 
 	private WaitForSeconds halfShotDuration;// = new WaitForSeconds(0.06f);
 
-	void CalculateHalfShotDuration() {
+	void CalculateHalfShotDuration()
+	{
 		float waitTime = 60f / realFireRate;
-		halfShotDuration = new WaitForSeconds(waitTime/2);
+		halfShotDuration = new WaitForSeconds(waitTime / 2);
 	}
 
-	void CalculateRealValues() {
-	
+	void UpdateUI()
+	{
+		if (comboText != null)
+			comboText.text = "Combo:	" + comboCount;
+
+		if (fireRateText != null)
+			fireRateText.text = "Fire Rate:	" + realFireRate;
+
+		if (damageText != null)
+			damageText.text = "Damage:	" + realDamage;
+
+		if (rangeText != null)
+			rangeText.text = "Range:	" + realRange;
+	}
+
+	void CalculateRealValues()
+	{
+
 		float multiplier = 1 + (comboMultiplier * comboCount);
 
 		switch (comboMode)
@@ -61,11 +84,12 @@ public class PlayerShooting : MonoBehaviour
 				realRange = multiplier * baseRange;
 				break;
 		}
+		UpdateUI();
 	}
 
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Start is called before the first frame update
+	void Start()
+	{
 		realFireRate = baseFireRate;
 		realDamage = baseDamage;
 		realRange = baseRange;
@@ -74,28 +98,56 @@ public class PlayerShooting : MonoBehaviour
 		canShot = true;
 		CalculateHalfShotDuration();
 
+
+		// Fetch TMP_Text fields from the grandparent (parent of parent)
+		Transform grandParent = transform.parent != null ? transform.parent.parent : null;
+		if (grandParent != null)
+		{
+			TMP_Text[] texts = grandParent.GetComponentsInChildren<TMP_Text>(true);
+			foreach (var text in texts)
+			{
+				switch (text.name)
+				{
+					case "Combo":
+						comboText = text;
+						break;
+					case "FireRate":
+						fireRateText = text;
+						break;
+					case "Damage":
+						damageText = text;
+						break;
+					case "Range":
+						rangeText = text;
+						break;
+				}
+			}
+		}
+
+		UpdateUI();
+
 		if (transform.parent != null)
 			shotOrigin = transform.parent;
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-		if(weaponMode == WeaponMode.SEMI && Input.GetButtonDown("Fire1") && canShot)
+	// Update is called once per frame
+	void Update()
+	{
+		if (weaponMode == WeaponMode.SEMI && Input.GetButtonDown("Fire1") && canShot)
 		{
 			Shoot();
 		}
-		else if(weaponMode == WeaponMode.BURST && Input.GetButtonDown("Fire1") && canShot)
+		else if (weaponMode == WeaponMode.BURST && Input.GetButtonDown("Fire1") && canShot)
 		{
 			for (int i = 0; i < 3; i++)
 				Shoot();
-				
+
 		}
-		else if(weaponMode == WeaponMode.AUTO && Input.GetButton("Fire1") && canShot)
+		else if (weaponMode == WeaponMode.AUTO && Input.GetButton("Fire1") && canShot)
 		{
 			Shoot();
 		}
-    }
+	}
 
 	void Shoot()
 	{
@@ -108,27 +160,29 @@ public class PlayerShooting : MonoBehaviour
 			laserLine.SetPosition(1, hit.point);
 
 			// Call the damage behaviour of target if exists.
-			if(hit.collider){
+			if (hit.collider)
+			{
 				hit.collider.SendMessageUpwards(
-					"HitCallback", 
+					"HitCallback",
 					new HealthManager.DamageInfo(
-						hit.point, 
-						shotOrigin.forward, 
-						realDamage, 
+						hit.point,
+						shotOrigin.forward,
+						realDamage,
 						hit.collider
-						), 
+						),
 					SendMessageOptions.DontRequireReceiver
 				);
 
-				if(hit.collider.CompareTag("Enemy"))
+				if (hit.collider.CompareTag("Enemy"))
 					comboCount++;
-				else 
+				else
 					comboCount = 0;
 			}
 			else
 				comboCount = 0;
 		}
-		else{
+		else
+		{
 			laserLine.SetPosition(1, drawShotOrigin.position + (shotOrigin.forward * realRange));
 			comboCount = 0;
 		}
