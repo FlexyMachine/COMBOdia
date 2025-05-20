@@ -1,18 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.Characters.FirstPerson; // FirstPersonController için
-
+using UnityStandardAssets.Characters.FirstPerson;
 public class LevelEndManager : MonoBehaviour
 {
-    public GameObject levelEndPanel;
-    public string nextSceneName;
+    public GameObject levelEndPanel; // Level bittiğinde gösterilecek UI paneli
+    public string nextSceneName; // Geçilecek bir sonraki sahnenin adı
     public FirstPersonController playerController;
 
     void Start()
     {
-        if (levelEndPanel != null) levelEndPanel.SetActive(false);
+        if (levelEndPanel != null) levelEndPanel.SetActive(false); // Başta paneli gizle
 
-        if (playerController == null)
+        if (playerController == null) 
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
             if (playerObject != null) playerController = playerObject.GetComponent<FirstPersonController>();
@@ -20,41 +19,64 @@ public class LevelEndManager : MonoBehaviour
         if (playerController == null) Debug.LogError("PlayerController referansı LevelEndManager'da ayarlanmamış!");
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other) // Oyuncu bu objeye çarptığında çalışır
     {
         if (other.CompareTag("Player")) ShowLevelEndPanel();
     }
 
-    void ShowLevelEndPanel()
+    void ShowLevelEndPanel() // Level sonu panelini göster
     {
         if (levelEndPanel == null) return;
 
-        levelEndPanel.SetActive(true);
-        Time.timeScale = 0f;
+        levelEndPanel.SetActive(true); // Paneli aktif et
+        Time.timeScale = 0f; // Zamanı durdur
 
         if (playerController != null)
         {
-            playerController.enabled = false;
-            // MouseLook'a fareyi serbest bırakmasını ve görünür yapmasını söyle
-            if (playerController.m_MouseLook != null)
+            playerController.enabled = false; // Oyuncu hareketini durdur
+            if (playerController.m_MouseLook != null) // Mouse kontrolünü serbest bırak
             {
-                playerController.m_MouseLook.SetCursorLock(false); // Bu metod Cursor.visible = true yapar
+                playerController.m_MouseLook.SetCursorLock(false);
             }
-            else // m_MouseLook yoksa veya erişilemiyorsa doğrudan ayarla
+            else 
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
         }
-        else // playerController yoksa da fareyi serbest bırak
+        else 
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
     }
 
-    // Sadece mevcut leveli yeniden başlatmak için
-    void PrepareForRestart()
+    void PrepareForRestart() // Sahneyi yeniden başlatmak için hazırlık yap
+    {
+        Time.timeScale = 1f; // Zamanı tekrar başlat
+        if (levelEndPanel != null) levelEndPanel.SetActive(false);
+
+        if (playerController != null)
+        {
+            playerController.enabled = true; // Hareketi tekrar aktif et
+            if (playerController.m_MouseLook != null)
+            {
+                playerController.m_MouseLook.SetCursorLock(true);
+            }
+            else 
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+        else 
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    void PrepareForNextSceneLoad() // Sonraki sahne yüklemesi için hazırlık yap
     {
         Time.timeScale = 1f;
         if (levelEndPanel != null) levelEndPanel.SetActive(false);
@@ -62,54 +84,24 @@ public class LevelEndManager : MonoBehaviour
         if (playerController != null)
         {
             playerController.enabled = true;
-            // MouseLook'a fareyi kilitlemesini söyle (MouseLook bunu kendi halledecektir)
-            if (playerController.m_MouseLook != null)
-            {
-                playerController.m_MouseLook.SetCursorLock(true);
-            }
-            else // m_MouseLook yoksa veya erişilemiyorsa doğrudan ayarla
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
-        else // playerController yoksa da fareyi oyun için ayarla
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-    }
-
-    // Sadece yeni bir sahneye geçiş için (farenin serbest kalması beklenir)
-    void PrepareForNextSceneLoad()
-    {
-        Time.timeScale = 1f; // Zamanı normale döndür
-        if (levelEndPanel != null) levelEndPanel.SetActive(false);
-
-        // PlayerController'ı etkinleştir (eğer sonraki sahne de bir oyun sahnesiyse ve FPC'ye ihtiyaç duyuyorsa)
-        // Eğer sonraki sahne kesinlikle menü ise bu satır opsiyoneldir veya kaldırılabilir.
-        if (playerController != null)
-        {
-            playerController.enabled = true;
         }
 
-        // YENİ SAHNE İÇİN FAREYİ KESİNLİKLE SERBEST BIRAK VE GÖRÜNÜR YAP
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.None; // Cursor’u serbest bırak
         Cursor.visible = true;
     }
 
-    public void RestartLevel()
+    public void RestartLevel() // Sahneyi yeniden yükle
     {
         PrepareForRestart();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Aynı sahneyi yeniden yükle
     }
 
-    public void LoadNextLevel()
+    public void LoadNextLevel() // Belirtilen sahneye geç
     {
-        PrepareForNextSceneLoad(); // Yeni sahne için hazırlık fonksiyonunu çağır
+        PrepareForNextSceneLoad(); 
         if (!string.IsNullOrEmpty(nextSceneName))
         {
-            SceneManager.LoadScene(nextSceneName);
+            SceneManager.LoadScene(nextSceneName); // Yeni sahneyi yükle
         }
         else
         {
