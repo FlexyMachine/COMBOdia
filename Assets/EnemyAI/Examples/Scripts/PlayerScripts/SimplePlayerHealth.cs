@@ -10,7 +10,6 @@ public class SimplePlayerHealth : HealthManager
 	public bool godMode;
 	public float health = 100f;
 	public float maxHealth = 100f;
-
 	public Transform canvas;
 	public GameObject hurtPrefab;
 	public Slider healthBar;
@@ -26,12 +25,12 @@ public class SimplePlayerHealth : HealthManager
 		hurtUI.Setup(canvas, hurtPrefab, decayFactor, this.transform);
 	}
 
-
 	private void UpdateUI()
-	{	
+	{
 		healthBar.value = health / maxHealth;
 		healthText.text = health / maxHealth * 100 + "%";
 	}
+
 	private void OnEnable()
 	{
 		UpdateUI();
@@ -45,6 +44,7 @@ public class SimplePlayerHealth : HealthManager
 			UpdateUI();
 		}
 
+		//show where the player got hit
 		if (hurtPrefab && canvas)
 			hurtUI.DrawHurtUI(origin.transform, origin.GetHashCode());
 	}

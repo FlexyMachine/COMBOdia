@@ -5,7 +5,7 @@ public class WeaponSelector : MonoBehaviour
     [System.Serializable]
     public class Weapon
     {
-        public string key; // Key to press (e.g., "1", "2", etc.)
+        public string key;
         public GameObject prefab; // Prefab to instantiate
     }
 
@@ -15,6 +15,7 @@ public class WeaponSelector : MonoBehaviour
 
     void Update()
     {
+        // Check for input to switch weapons
         foreach (var weapon in weapons)
         {
             if (Input.GetKeyDown(weapon.key))

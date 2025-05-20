@@ -69,6 +69,7 @@ public class PlayerShooting : MonoBehaviour
 
 		float multiplier = 1 + (comboMultiplier * comboCount);
 
+		// Calculate the real values based on the combo count and mode
 		switch (comboMode)
 		{
 			case ComboMode.FIRE_RATE:
@@ -84,6 +85,8 @@ public class PlayerShooting : MonoBehaviour
 				realRange = multiplier * baseRange;
 				break;
 		}
+
+		// Update the UI with the new values
 		UpdateUI();
 	}
 
@@ -98,36 +101,37 @@ public class PlayerShooting : MonoBehaviour
 		canShot = true;
 		CalculateHalfShotDuration();
 
-
-		// Fetch TMP_Text fields from the grandparent (parent of parent)
-		Transform grandParent = transform.parent != null ? transform.parent.parent : null;
-		if (grandParent != null)
+		// Set the initial values for the UI amd shot origin
+		if (transform.parent != null)
 		{
-			TMP_Text[] texts = grandParent.GetComponentsInChildren<TMP_Text>(true);
-			foreach (var text in texts)
+			shotOrigin = transform.parent;
+			// Fetch TMP_Text fields from the grandparent
+			Transform grandParent = transform.parent.parent;
+			if (grandParent != null)
 			{
-				switch (text.name)
+				TMP_Text[] texts = grandParent.GetComponentsInChildren<TMP_Text>(true);
+				foreach (var text in texts)
 				{
-					case "Combo":
-						comboText = text;
-						break;
-					case "FireRate":
-						fireRateText = text;
-						break;
-					case "Damage":
-						damageText = text;
-						break;
-					case "Range":
-						rangeText = text;
-						break;
+					switch (text.name)
+					{
+						case "Combo":
+							comboText = text;
+							break;
+						case "FireRate":
+							fireRateText = text;
+							break;
+						case "Damage":
+							damageText = text;
+							break;
+						case "Range":
+							rangeText = text;
+							break;
+					}
 				}
 			}
+
+			UpdateUI();
 		}
-
-		UpdateUI();
-
-		if (transform.parent != null)
-			shotOrigin = transform.parent;
 	}
 
 	// Update is called once per frame
@@ -137,6 +141,7 @@ public class PlayerShooting : MonoBehaviour
 		{
 			Shoot();
 		}
+		//experimental burst fire not working yet
 		else if (weaponMode == WeaponMode.BURST && Input.GetButtonDown("Fire1") && canShot)
 		{
 			for (int i = 0; i < 3; i++)
@@ -173,6 +178,7 @@ public class PlayerShooting : MonoBehaviour
 					SendMessageOptions.DontRequireReceiver
 				);
 
+				// Check if the hit object is an enemy and update the combo count
 				if (hit.collider.CompareTag("Enemy"))
 					comboCount++;
 				else
@@ -187,6 +193,7 @@ public class PlayerShooting : MonoBehaviour
 			comboCount = 0;
 		}
 
+		// Update the combo count and UI
 		CalculateRealValues();
 		// Call the alert manager to notify the shot noise.
 		GameObject.FindGameObjectWithTag("GameController").SendMessage("RootAlertNearby", shotOrigin.position, SendMessageOptions.DontRequireReceiver);
