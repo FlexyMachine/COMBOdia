@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 9066864060608638677}
   - component: {fileID: 9062116651517638081}
   - component: {fileID: 9062116651517638080}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Hips
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2509,8 +2509,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.36984262, y: 0.26963446, z: 0.258515}
-  m_Center: {x: 0.00009526315, y: 0.13481742, z: -0.015902022}
+  m_Size: {x: 0.36984262, y: 0.54, z: 0.258515}
+  m_Center: {x: 0.00009526315, y: -0.05, z: -0.015902022}
 --- !u!1 &9063300739955025821
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,3 @@
-using System;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class SlidingDoors : MonoBehaviour
